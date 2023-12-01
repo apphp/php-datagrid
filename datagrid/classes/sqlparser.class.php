@@ -177,11 +177,7 @@ class SqlParser {
     public static function ParseString($sqlQuery, $cleanWhitespace = true) {
 
         // instantiate if called statically
-        if (empty($this)) {
-            $handle = new SqlParser();
-        } else {
-            $handle = $this;
-        }
+        $handle = new SqlParser();
 
         // copy and tokenize the query
         $tokens = self::Tokenize($sqlQuery, $cleanWhitespace);

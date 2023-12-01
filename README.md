@@ -1,14 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////////
-// 
-// Advanced Power of PHP 
-// ---------------------
-// https://www.apphp.com
-// 
-// ApPHP DataGrid Pro (AJAX enabled)
-//
-// Version: 8.5.4
-//
-///////////////////////////////////////////////////////////////////////////////////
+Advanced Power of PHP 
+
+https://www.apphp.com
+ 
+ApPHP DataGrid Pro (AJAX enabled)
+
+Version: 8.5.4
 
 Thank you for using ApPHP.com software!
 -----------------------------------------------------------------------------------

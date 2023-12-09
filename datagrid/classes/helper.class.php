@@ -341,7 +341,7 @@ class Helper
      */
     public static function GetColorsByName()
     {
-		$colors = array(
+        return array(
 			'Reds' => array(
 				'#CD5C5C' => 'Indian Red',
 				'#F08080' => 'Light Coral',
@@ -392,8 +392,7 @@ class Helper
 				'#DDA0DD' => 'Plum',
 				'#EE82EE' => 'Violet',
 				'#DA70D6' => 'Orchid',
-				'#FF00FF' => 'Fuchsia',
-				'#FF00FF' => 'Magenta',
+				'#FF00FF' => 'Fuchsia / Magenta',
 				'#BA55D3' => 'Medium Orchid',
 				'#9370DB' => 'Medium Purple',
 				'#8A2BE2' => 'Blue Violet',
@@ -433,8 +432,7 @@ class Helper
 			),
 			
 			'Blues' => array(
-				'#00FFFF' => 'Aqua',
-				'#00FFFF' => 'Cyan',
+				'#00FFFF' => 'Aqua / Cyan',
 				'#E0FFFF' => 'Light Cyan',
 				'#AFEEEE' => 'Pale Turquoise',
 				'#7FFFD4' => 'Aquamarine',
@@ -513,7 +511,6 @@ class Helper
 				'#000000' => 'Black'			
 			)
 		);
-		return $colors;
 	}
 	
     /**

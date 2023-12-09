@@ -95,8 +95,8 @@ Calendar.setup = function (params) {
 	param_default("showOthers",     false);
 	param_default("multiple",       null);
 
-	var tmp = ["inputField", "displayArea", "button"];
-	for (var i in tmp) {
+	let tmp = ["inputField", "displayArea", "button"];
+	for (let i in tmp) {
 		if (typeof params[tmp[i]] == "string") {
 			params[tmp[i]] = document.getElementById(params[tmp[i]]);
 		}
@@ -108,8 +108,8 @@ Calendar.setup = function (params) {
 	}
 
 	function onSelect(cal) {
-		var p = cal.params;
-		var update = (cal.dateClicked || p.electric);
+		let p = cal.params;
+		let update = (cal.dateClicked || p.electric);
 		if (update && p.inputField) {
 			p.inputField.value = cal.date.print(p.ifFormat);
 			if (typeof p.inputField.onchange == "function")
@@ -125,7 +125,7 @@ Calendar.setup = function (params) {
 		}
 		if (update && p.singleClick && cal.dateClicked)
 			cal.callCloseHandler();
-	};
+	}
 
 	if (params.flat != null) {
 		if (typeof params.flat == "string")

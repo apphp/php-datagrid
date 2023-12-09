@@ -59,7 +59,7 @@ $phpallowuploads = true;
 // get the identifier of the editor
 $wysiwyg = isset($_GET['wysiwyg']) ? prepare_input_wysiwyg($_GET['wysiwyg']) : ''; 
 // set image dir
-$leadon = $imagebasedir;
+$leadon = isset($imagebasedir) ? $imagebasedir : '';
 
 if($leadon=='.') $leadon = '';
 if((substr($leadon, -1, 1)!='/') && $leadon!='') $leadon = $leadon . '/';
@@ -91,7 +91,7 @@ if($get_dir){
 }
 
 
-if(!$is_demo){		
+if(!$is_demo){
 	// upload file
 	if($allowuploads && isset($_FILES['file'])) {
 		$upload = true;

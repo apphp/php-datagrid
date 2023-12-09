@@ -553,6 +553,7 @@ function AddFont($family, $style='', $file='', $uni=false)
 		else { $ttffilename = $this->_getfontpath().'unifont/'.$file ; }
 		$unifilename = $this->_getfontpath().'unifont/'.strtolower(substr($file ,0,(strpos($file ,'.'))));
 		$name = '';
+        $desc = [];
 		$originalsize = 0;
 		$ttfstat = stat($ttffilename);
 		if (file_exists($unifilename.'.mtx.php')) {
@@ -1929,7 +1930,7 @@ function _putfonts()
 			$this->_newobj();
 			$this->_out('<</Type /Font');
 			$this->_out('/Subtype /Type0');
-			$this->_out('/BaseFont /'.$fontname.'');
+			$this->_out('/BaseFont /'.$fontname);
 			$this->_out('/Encoding /Identity-H'); 
 			$this->_out('/DescendantFonts ['.($this->n + 1).' 0 R]');
 			$this->_out('/ToUnicode '.($this->n + 2).' 0 R');
@@ -1941,11 +1942,11 @@ function _putfonts()
 			$this->_newobj();
 			$this->_out('<</Type /Font');
 			$this->_out('/Subtype /CIDFontType2');
-			$this->_out('/BaseFont /'.$fontname.'');
+			$this->_out('/BaseFont /'.$fontname);
 			$this->_out('/CIDSystemInfo '.($this->n + 2).' 0 R'); 
 			$this->_out('/FontDescriptor '.($this->n + 3).' 0 R');
 			if (isset($font['desc']['MissingWidth'])){
-				$this->_out('/DW '.$font['desc']['MissingWidth'].''); 
+				$this->_out('/DW '.$font['desc']['MissingWidth']);
 			}
 
 			$this->_putTTfontwidths($font, $ttf->maxUni);
@@ -2010,7 +2011,7 @@ function _putfonts()
 			}
 			$cidtogidmap = gzcompress($cidtogidmap);
 			$this->_newobj();
-			$this->_out('<</Length '.strlen($cidtogidmap).'');
+			$this->_out('<</Length '.strlen($cidtogidmap));
 			$this->_out('/Filter /FlateDecode');
 			$this->_out('>>');
 			$this->_putstream($cidtogidmap);

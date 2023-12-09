@@ -8,8 +8,8 @@
  **/
 
 function _dgSkipToAnchor(unique_prefix){
-   var unique_prefix_ = (unique_prefix == null) ? '' : unique_prefix;
-   var currentHref = window.location.href;
+   let unique_prefix_ = (unique_prefix == null) ? '' : unique_prefix;
+   let currentHref = window.location.href;
    window.location.href = currentHref.substr(0, currentHref.lastIndexOf('#')) + '#' + unique_prefix_ + 'top';
 }
 
@@ -25,20 +25,23 @@ function _dgIsCookieAllowed(){
 }
 
 function _dgSetCookie(name, value, days) {
+   let expires;
    if(days){
-      var date = new Date();
+      let date = new Date();
       date.setTime(date.getTime()+(days*24*60*60*1000));
-      var expires = '; expires='+date.toGMTString();
+      expires = '; expires='+date.toGMTString();
    }
-   else var expires = '';
+   else {
+      expires = '';
+   }
    document.cookie = name+'='+value+expires+'; path=/';
 }
 
 function _dgReadCookie(name) {
    var nameEQ = name + '=';
    var ca = document.cookie.split(';');
-   for(var i=0; i < ca.length; i++){
-      var c = ca[i];
+   for(let i=0; i < ca.length; i++){
+      let c = ca[i];
       while (c.charAt(0)==' ') c = c.substring(1,c.length);
       if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
    }

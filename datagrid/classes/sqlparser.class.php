@@ -17,9 +17,7 @@
  */
 class SqlParser {
 
-    private $handle = null;
-    
-    // statements 
+    // statements
     public static $querysections = array('alter','create','drop', 
                                          'select', 'delete', 'insert', 
                                          'update', 'from', 'where', 
@@ -112,7 +110,7 @@ class SqlParser {
      * @author Justin Carlson <justin.carlson@gmail.com>
      * @license GPL
      * @param string $sqlQuery
-     * @return token array
+     * @return array
      */
     public static function Tokenize($sqlQuery, $cleanWhitespace = true) {
         /**
@@ -183,6 +181,7 @@ class SqlParser {
         $tokens = self::Tokenize($sqlQuery, $cleanWhitespace);
         $tokenCount = count($tokens);
         $queryParts = array();
+        $section = '';
         if (isset($tokens[0])===true) {
             $section = $tokens[0];
         }

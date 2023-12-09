@@ -599,6 +599,7 @@ class TTFontFile {
 		}
 
 		ksort($subsetCharToGlyph);
+        $codeToGlyph = [];
 		foreach($subsetCharToGlyph AS $uni => $originalGlyphIdx) {
 			$codeToGlyph[$uni] = $glyphSet[$originalGlyphIdx] ;
 		}

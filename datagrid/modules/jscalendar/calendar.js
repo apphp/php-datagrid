@@ -59,11 +59,12 @@ Calendar = function (firstDayOfWeek, dateStr, onSelected, onClose) {
 
 	// one-time initializations
 	if (typeof Calendar._SDN == "undefined") {
+		let i;
 		// table of short day names
 		if (typeof Calendar._SDN_len == "undefined")
 			Calendar._SDN_len = 3;
-		var ar = new Array();
-		for (var i = 8; i > 0;) {
+		let ar = new Array();
+		for (i = 8; i > 0;) {
 			ar[--i] = Calendar._DN[i].substr(0, Calendar._SDN_len);
 		}
 		Calendar._SDN = ar;
@@ -71,7 +72,7 @@ Calendar = function (firstDayOfWeek, dateStr, onSelected, onClose) {
 		if (typeof Calendar._SMN_len == "undefined")
 			Calendar._SMN_len = 3;
 		ar = new Array();
-		for (var i = 12; i > 0;) {
+		for (i = 12; i > 0;) {
 			ar[--i] = Calendar._MN[i].substr(0, Calendar._SMN_len);
 		}
 		Calendar._SMN = ar;

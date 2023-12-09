@@ -45,18 +45,18 @@ function dg_doAjaxRequest(query_string, uniquePrefix, HTTP_URL, is_debug, run_sc
     
     xmlHttpObject.open('GET', request_url);
     xmlHttpObject.onreadystatechange=function() {
-        if(xmlHttpObject.readyState == 4) {                    
-          
-            var responseText = xmlHttpObject.responseText;
-            
-            var start_tag = '<div id="'+uniquePrefix+'dg_ajax_container">';
-            var end_tag = '<div id="'+uniquePrefix+'dg_ajax_container_end">';
-            var start_tag_length = start_tag.length;
-            var end_tag_length = '</div>'.length;
-            var start_index = responseText.indexOf(start_tag);
-            var end_index = responseText.indexOf(end_tag);
-            var responseTextSelected = responseText.substring(start_index+start_tag_length,end_index-end_tag_length);                    
-            
+        if(xmlHttpObject.readyState == 4) {
+
+            let responseText = xmlHttpObject.responseText;
+
+            let start_tag = '<div id="' + uniquePrefix + 'dg_ajax_container">';
+            let end_tag = '<div id="' + uniquePrefix + 'dg_ajax_container_end">';
+            let start_tag_length = start_tag.length;
+            let end_tag_length = '</div>'.length;
+            let start_index = responseText.indexOf(start_tag);
+            let end_index = responseText.indexOf(end_tag);
+            let responseTextSelected = responseText.substring(start_index + start_tag_length, end_index - end_tag_length);
+
             document.getElementById(uniquePrefix+'dg_ajax_container_opacity').style.opacity = 1;
             document.getElementById(uniquePrefix+'dg_ajax_container_opacity').style.filter='progid:DXImageTransform.Microsoft.Alpha(opacity=100);';
             document.getElementById(uniquePrefix+'dg_ajax_container_opacity').style.filter='alpha(opacity=100);'; 

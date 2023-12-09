@@ -1250,7 +1250,7 @@ class DataGrid
                 $first_key = '';
                 foreach($pages_array as $key => $val){
                     if(empty($first_key)) $first_key = $key;
-                    if(intval($pages_array[$key]) == 0) $pages_array[$key] = 1;
+                    if(intval($val) == 0) $pages_array[$key] = 1;
                 }
                 $this->arrPages = $pages_array;
                 if($pages_array[$first_key] > 0) $this->reqPageSize = $pages_array[$first_key];               
@@ -1436,11 +1436,12 @@ class DataGrid
 
     /**
      * Set auto-generated columns in add/edit/details mode
-     *	@param $auto_columns
+     * @param string $auto_columns
+     * @return void
      */
-    public function SetAutoColumnsInEditMode($auto_columns = ''){
+    public function SetAutoColumnsInEditMode($auto_columns = '') {
         $req_mode = $this->GetVariableAlpha('mode');
-        if($req_mode == '' || $req_mode == 'view') return false;
+        if($req_mode == '' || $req_mode == 'view') return;
         
         if(($auto_columns == true) || ($auto_columns == 'true')){
             unset($this->columnsEditMode);
@@ -2071,19 +2072,20 @@ class DataGrid
 
     /**
      * Get next record ID
+     * @return int
      */
     public function GetNextId(){
-        if(isset($this->dbHandler)){
-            // need to be declined if creating new row was cancelied
-            // return $this->dbHandler->nextId('\''.$this->tblName.'\'');            
-            $sql  = ' SELECT MAX('.$this->primaryKey.') as max_id FROM '.$this->tblName.' ';
-            $dSet = $this->dbHandler->query($sql);
-            if($row = $this->dgFetchRow($dSet)){
-                return $row[0]+1;
-            }
-        }else{
-            return ;        
-        }        
+        if(!isset($this->dbHandler)){
+            return 0;
+        }
+
+        // need to be declined if creating new row was cancelied
+        // return $this->dbHandler->nextId('\''.$this->tblName.'\'');
+        $sql  = ' SELECT MAX('.$this->primaryKey.') as max_id FROM '.$this->tblName.' ';
+        $dSet = $this->dbHandler->query($sql);
+        if($row = $this->dgFetchRow($dSet)){
+            return $row[0]+1;
+        }
     } 
 
     /**
@@ -4855,8 +4857,7 @@ class DataGrid
      *	@param $draw
      */
     protected function SaveHttpGetVars($draw = true){ 
-		$output = '';
-        $output .= '<div style="padding:0px;margin:0px;">'.$this->nl;
+        $output = '<div style="padding:0;margin:0;">'.$this->nl;
         if(is_array($this->httpGetVars)){
             foreach($this->httpGetVars as $key){
                 if(isset($_GET[$key]) && is_array($_GET[$key])){
@@ -4878,7 +4879,7 @@ class DataGrid
                 if($val[$this->mode] == true && isset($_REQUEST) && is_array($_REQUEST)){
                     foreach($_REQUEST as $r_key => $r_val){
                         if(strstr($r_key, $key)){ // .'_ff_'
-                           $output .= '<input type="hidden" name="'.$r_key.'" id="'.$r_key.'" value="'.((isset($_REQUEST[$r_key]))?$_REQUEST[$r_key]:'').'" />'.$this->nl;
+                           $output .= '<input type="hidden" name="'.$r_key.'" id="'.$r_key.'" value="'.(!empty($r_val) ? $r_val : '').'" />'.$this->nl;
                         }                
                     }                    
                 }
